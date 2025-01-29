@@ -6,8 +6,8 @@ using namespace std;
 
 enum en_questions_level { easy = 1, medium = 2, hard = 3 };
 
-int rand_num(int From, int To) {
-    return rand() % (To - From + 1) + From;
+int rand_num(int from, int to) {
+    return rand() % (to - from + 1) + from;
 }
 
 int gen_question(en_questions_level level) {
