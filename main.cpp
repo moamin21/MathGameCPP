@@ -1,17 +1,15 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+
 using namespace std;
 
-// Enum for question difficulty level
 enum enQuestionsLevel { Easy = 1, Medium = 2, Hard = 3 };
 
-// Function to generate random numbers within a range
 int RandomNumber(int From, int To) {
     return rand() % (To - From + 1) + From;
 }
 
-// Function to display a question and return the correct answer
 int GenerateQuestion(enQuestionsLevel level) {
     int num1, num2, correctAnswer;
     char operation;
@@ -31,7 +29,7 @@ int GenerateQuestion(enQuestionsLevel level) {
             break;
     }
 
-    int operationChoice = RandomNumber(1, 4); // Randomly choose an operation
+    int operationChoice = RandomNumber(1, 4);
     switch (operationChoice) {
         case 1:
             operation = '+';
@@ -47,32 +45,34 @@ int GenerateQuestion(enQuestionsLevel level) {
             break;
         case 4:
             operation = '/';
-            num2 = (num2 == 0) ? 1 : num2; // Prevent division by zero
+            num2 = (num2 == 0) ? 1 : num2;
             correctAnswer = num1 / num2;
             break;
     }
 
-    // Display the question
     cout << "What is " << num1 << " " << operation << " " << num2 << "? ";
     return correctAnswer;
 }
 
-// Main game logic
 void PlayMathGame() {
+
     int score = 0;
     int numQuestions;
     enQuestionsLevel level;
+    int levelChoice;
 
     cout << "Welcome to the Math Quiz Game!\n";
+
     cout << "Choose difficulty level:\n1. Easy\n2. Medium\n3. Hard\n";
-    int levelChoice;
     cin >> levelChoice;
+
     level = static_cast<enQuestionsLevel>(levelChoice);
 
     cout << "How many questions would you like to answer? ";
     cin >> numQuestions;
 
     for (int i = 1; i <= numQuestions; i++) {
+
         cout << "\nQuestion " << i << "/" << numQuestions << ":\n";
         int correctAnswer = GenerateQuestion(level);
         int playerAnswer;
@@ -88,6 +88,7 @@ void PlayMathGame() {
     }
 
     cout << "\nYou answered " << score << " out of " << numQuestions << " questions correctly.\n";
+
     if (score >= numQuestions / 2) {
         cout << "Congratulations! You passed the quiz!\n";
     } else {
@@ -96,7 +97,8 @@ void PlayMathGame() {
 }
 
 int main() {
-    srand(static_cast<unsigned>(time(0))); // Seed random number generator
+
+    srand(static_cast<unsigned>(time(0)));
     char playAgain;
 
     do {
